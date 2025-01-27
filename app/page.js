@@ -1,8 +1,13 @@
 import bgImg from "@/public/bg.png";
 import Image from "next/image";
 import Link from "next/link";
+import { getAllGuests, getGuest } from "./_lib/data-service";
 
-export default function Page() {
+export default async function Page() {
+  // const guest = await getGuest("obodo@EMAILL.com");
+
+  // console.log(guest);
+
   return (
     <main className="mt-24">
       <Image

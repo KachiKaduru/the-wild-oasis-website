@@ -141,7 +141,7 @@ export async function getCountries() {
 // CREATE
 
 export async function createGuest(newGuest) {
-  const { data, error } = await supabase.from("guests").insert([newGuest]);
+  const { data, error } = await supabase.from("guests").insert([newGuest]).select();
 
   if (error) {
     console.error(error);

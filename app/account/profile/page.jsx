@@ -6,9 +6,9 @@ export const metadata = {
   title: "Profile",
 };
 
-export default function Page() {
+export default async function Page() {
+  const { user } = await auth();
   // CHANGE
-  const countryFlag = "pt.jpg";
   const nationality = "portugal";
 
   return (
@@ -20,7 +20,7 @@ export default function Page() {
         you soon!
       </p>
 
-      <UpdateProfileForm>
+      <UpdateProfileForm user={user}>
         <SelectCountry
           name="nationality"
           id="nationality"
