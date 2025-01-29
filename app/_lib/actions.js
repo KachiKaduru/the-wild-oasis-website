@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 
@@ -23,6 +24,9 @@ export async function updateGuestProfile(formData) {
     .eq("id", session.user.guestId);
 
   if (error) throw new Error("Guest could not be updated");
+
+  // TO CLEAR THE BROWSER CACHE IMMEDIATELY AFTER SENDING THE SERVER ACTION
+  revalidatePath("/account/profile");
 }
 
 export async function signInAction() {
