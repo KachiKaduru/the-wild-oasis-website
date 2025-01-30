@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
-import { getBookings } from "./data-service";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { auth, signIn, signOut } from "./auth";
+import { getBookings } from "./data-service";
 
 export async function updateGuestProfile(formData) {
   // console.log(formData);
@@ -77,6 +77,10 @@ export async function updateReservation(formData) {
 }
 
 export async function deleteReservation(bookingId) {
+  // For testing
+  // await new Promise((res) => setTimeout(res, 2000));
+  // throw new Error("ERROR NIGGAAAA");
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
