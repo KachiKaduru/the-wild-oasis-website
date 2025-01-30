@@ -56,7 +56,7 @@ export async function getGuest(email) {
 }
 
 export async function getBooking(id) {
-  const { data, error, count } = await supabase.from("bookings").select("*").eq("id", id).single();
+  const { data, error } = await supabase.from("bookings").select("*").eq("id", id).single();
 
   if (error) {
     console.error(error);
