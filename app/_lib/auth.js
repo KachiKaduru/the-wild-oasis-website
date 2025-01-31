@@ -32,6 +32,9 @@ const authConfig = {
   pages: {
     signIn: "/login",
   },
+  theme: {
+    name: "The Wild Oasis",
+  },
 };
 
 export const {
