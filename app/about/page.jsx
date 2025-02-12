@@ -58,7 +58,7 @@ export default async function Page() {
       </div>
 
       <div className="col-span-full lg:col-span-3">
-        <h1 className="text-4xl mb-10 text-accent-400 font-medium">
+        <h1 className="text-3xl sm:text-4xl mb-5 md:mb-10 text-accent-400 font-medium">
           Managed by our family since 1962
         </h1>
 
@@ -79,7 +79,7 @@ export default async function Page() {
           <div className="flex justify-center lg:justify-normal">
             <Link
               href="/cabins"
-              className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+              className="inline-block mt-4 bg-accent-500 px-6 py-3 sm:px-8 sm:py-5 text-primary-800 text-base sm:text-lg font-semibold hover:bg-accent-600 transition-all"
             >
               Explore our luxury cabins
             </Link>
