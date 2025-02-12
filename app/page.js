@@ -15,12 +15,12 @@ export default async function Page() {
       />
 
       <div className="relative z-10 text-center">
-        <h1 className="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
+        <h1 className="text-6xl sm:text-7xl mb:text-8xl text-primary-50 mb-10 tracking-tight font-normal">
           Welcome to paradise.
         </h1>
         <Link
           href="/cabins"
-          className="bg-accent-500 px-8 py-6 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+          className="bg-accent-500 px-7 py-5 md:px-8 md:py-6 text-primary-800 text-base sm:text-lg font-semibold hover:bg-accent-600 transition-all"
         >
           Explore luxury cabins
         </Link>
