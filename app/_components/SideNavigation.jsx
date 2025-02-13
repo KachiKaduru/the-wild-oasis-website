@@ -26,9 +26,13 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
+  const show = "-translate-x-full opacity-0";
+  // const show = "";
 
   return (
-    <nav className="border-r border-primary-900 sticky top-0 w-64">
+    <nav
+      className={`border-r border-primary-900 md:sticky md:top-0 w-64 absolute top-0 left-0 bg-primary-700 md:bg-transparent z-30 h-[76dvh] ${show}`}
+    >
       <ul className="flex flex-col gap-2 h-full text-lg">
         {navLinks.map((link) => (
           <li key={link.name}>
