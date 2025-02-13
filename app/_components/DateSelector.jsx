@@ -4,6 +4,7 @@ import { differenceInDays, isPast, isSameDay, isWithinInterval } from "date-fns"
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useReservation } from "../_contexts/ReservationContext";
+import { useEffect, useState } from "react";
 
 function isAlreadyBooked(range, datesArr) {
   return (
@@ -22,6 +23,26 @@ export default function DateSelector({ cabin, settings, bookedDates }) {
   const cabinPrice = numNights * (regularPrice - discount);
   const { minBookingLength, maxBookingLength } = settings;
 
+  const [month, setMonth] = useState(1);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleResize = (e) => {
+      if (e.matches) {
+        setMonth(2); // Update month when viewport reaches 768px
+      } else {
+        setMonth(1); // Reset when below 768px (optional)
+      }
+    };
+
+    // Initial check
+    handleResize(mediaQuery);
+
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
+
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
@@ -35,7 +56,7 @@ export default function DateSelector({ cabin, settings, bookedDates }) {
         fromDate={new Date()}
         toYear={new Date().getFullYear() + 5}
         captionLayout="dropdown"
-        numberOfMonths={2}
+        numberOfMonths={month}
         disabled={(curDate) =>
           isPast(curDate) || bookedDates.some((date) => isSameDay(date, curDate))
         }

@@ -4,6 +4,7 @@ import { CalendarDaysIcon, HomeIcon, UserIcon } from "@heroicons/react/24/solid"
 import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MenuIcon from "./MenuIcon";
 
 const navLinks = [
   {
@@ -27,7 +28,7 @@ function SideNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-r border-primary-900 sticky top-0 w-0 opacity-0 md:opacity-100 md:w-64">
+    <nav className="border-r border-primary-900 sticky top-0 w-64">
       <ul className="flex flex-col gap-2 h-full text-lg">
         {navLinks.map((link) => (
           <li key={link.name}>
