@@ -5,7 +5,6 @@ import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useReservation } from "../_contexts/ReservationContext";
-// import { useEffect } from "react";
 import MenuIcon from "./MenuIcon";
 
 const navLinks = [
@@ -33,28 +32,6 @@ function SideNavigation() {
   const hide = "-translate-x-full opacity-0 -z-40";
   const show = "translate-x-0 opacity-100";
 
-  // useEffect(() => {
-  //   const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-  //   const handleResize = (e) => {
-  //     if (e.matches && isOpen) return;
-
-  //     if (e.matches && !isOpen) setIsOpen(true);
-
-  //     if (!e.matches) setIsOpen(false);
-
-  //     // if (e.matches) {
-
-  //     // }
-  //   };
-
-  //   // Initial check
-  //   handleResize(mediaQuery);
-
-  //   mediaQuery.addEventListener("change", handleResize);
-  //   return () => mediaQuery.removeEventListener("change", handleResize);
-  // }, []);
-
   return (
     <aside>
       <MenuIcon className="md:hidden" />
@@ -64,7 +41,7 @@ function SideNavigation() {
       )}
 
       <nav
-        className={`border-r border-primary-900 w-64 absolute top-0 left-0 bg-primary-950 z-30 h-[76dvh] ${
+        className={`border-r border-primary-900 w-52 sm:w-64 absolute top-0 left-0 bg-primary-950 z-30 h-[76dvh] ${
           isOpen ? show : hide
         } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100`}
       >

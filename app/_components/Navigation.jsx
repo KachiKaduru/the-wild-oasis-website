@@ -1,43 +1,41 @@
-import Link from "next/link";
-import { auth } from "../_lib/auth";
+"use client";
 
-export default async function Navigation() {
-  const session = await auth();
+import Link from "next/link";
+import HeaderMenuIcon from "./HeaderMenuIcon";
+import { useHeader } from "../_contexts/HeaderContext";
+
+export default function Navigation({ children }) {
+  const { isHeaderOpen, toggleHeader, closeHeader } = useHeader();
 
   return (
-    <nav className="z-10 text-xl absolute top-0 right-0 hidden md:block md:relative">
-      <ul className="flex flex-col md:flex-row gap-16 items-center">
-        <li>
-          <Link href="/cabins" className="hover:text-accent-400 transition-colors">
-            Cabins
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="hover:text-accent-400 transition-colors">
-            About
-          </Link>
-        </li>
-        <li>
-          {session?.user?.image ? (
-            <Link
-              href="/account"
-              className="hover:text-accent-400 transition-colors flex gap-4 items-center"
-            >
-              <img
-                src={session.user.image}
-                alt={session.user.name}
-                referrerPolicy="no-referrer"
-                className="h-8 rounded-full"
-              />
-              <span>Guest area</span>
+    <aside className="z-20">
+      <HeaderMenuIcon className="cursor-pointer md:hidden" onClick={toggleHeader} />
+
+      {isHeaderOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 md:hidden" onClick={closeHeader} />
+      )}
+
+      <nav
+        className={`z-20 text-xl fixed top-0 right-0 bg-primary-700 h-screen ${
+          isHeaderOpen ? "" : "translate-x-full"
+        } md:block md:relative md:h-full md:bg-transparent `}
+      >
+        <ul className="flex flex-col md:flex-row gap-16 items-center">
+          <li onClick={closeHeader}>
+            <Link href="/cabins" className="hover:text-accent-400 transition-colors">
+              Cabins
             </Link>
-          ) : (
-            <Link href="/account" className="hover:text-accent-400 transition-colors">
-              Guest area
+          </li>
+
+          <li onClick={closeHeader}>
+            <Link href="/about" className="hover:text-accent-400 transition-colors">
+              About
             </Link>
-          )}
-        </li>
-      </ul>
-    </nav>
+          </li>
+
+          {children}
+        </ul>
+      </nav>
+    </aside>
   );
 }
