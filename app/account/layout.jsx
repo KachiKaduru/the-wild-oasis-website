@@ -3,12 +3,9 @@ import SideNavigation from "../_components/SideNavigation";
 
 export default function AccountLayout({ children }) {
   return (
-    <div className="grid md:grid-cols-[auto_1fr] md:gap-12 h-full relative">
+    <div className="flex gap-8 md:grid md:grid-cols-[auto_1fr] md:gap-12 h-full relative">
       <SideNavigation />
-      <div>
-        <MenuIcon className="md:hidden" />
-        {children}
-      </div>
+      <div className="w-full"> {children}</div>
     </div>
   );
 }

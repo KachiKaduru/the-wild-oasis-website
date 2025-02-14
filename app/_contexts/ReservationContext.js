@@ -13,10 +13,11 @@ function ReservationProvider({ children }) {
   const resetRange = () => setRange(initialState);
 
   const toggleOpen = () => setIsOpen((i) => !i);
+  const closeNav = () => setIsOpen(false);
 
   return (
     <ReservationContext.Provider
-      value={{ range, setRange, resetRange, isOpen, setIsOpen, toggleOpen }}
+      value={{ range, setRange, resetRange, isOpen, setIsOpen, toggleOpen, closeNav }}
     >
       {children}
     </ReservationContext.Provider>

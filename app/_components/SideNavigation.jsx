@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useReservation } from "../_contexts/ReservationContext";
 import { useEffect } from "react";
+import MenuIcon from "./MenuIcon";
 
 const navLinks = [
   {
@@ -27,59 +28,69 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
-  const { isOpen, toggleOpen, setIsOpen } = useReservation();
+  const { isOpen, closeNav } = useReservation();
 
   const hide = "-translate-x-full opacity-0 -z-40";
-  const show = "translate-x-0 md:opacity-100";
+  const show = "translate-x-0 opacity-100";
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-    const handleResize = (e) => {
-      if (e.matches && isOpen) return;
+  //   const handleResize = (e) => {
+  //     if (e.matches && isOpen) return;
 
-      if (e.matches && !isOpen) setIsOpen(true);
+  //     if (e.matches && !isOpen) setIsOpen(true);
 
-      if (!e.matches) setIsOpen(false);
+  //     if (!e.matches) setIsOpen(false);
 
-      // if (e.matches) {
+  //     // if (e.matches) {
 
-      // }
-    };
+  //     // }
+  //   };
 
-    // Initial check
-    handleResize(mediaQuery);
+  //   // Initial check
+  //   handleResize(mediaQuery);
 
-    mediaQuery.addEventListener("change", handleResize);
-    return () => mediaQuery.removeEventListener("change", handleResize);
-  }, []);
+  //   mediaQuery.addEventListener("change", handleResize);
+  //   return () => mediaQuery.removeEventListener("change", handleResize);
+  // }, []);
 
   return (
-    <nav
-      className={`border-r border-primary-900 md:sticky md:top-0 w-64 absolute top-0 left-0 bg-primary-700 md:bg-transparent z-30 h-[76dvh] ${
-        isOpen ? "" : hide
-      }`}
-    >
-      <ul className="flex flex-col gap-2 h-full text-lg">
-        {navLinks.map((link) => (
-          <li key={link.name} onClick={toggleOpen}>
-            <Link
-              className={`py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 ${
-                pathname === link.href ? "bg-primary-900" : ""
-              }`}
-              href={link.href}
-            >
-              {link.icon}
-              <span>{link.name}</span>
-            </Link>
-          </li>
-        ))}
+    <>
+      <aside className="md:hidden">
+        <MenuIcon />
+      </aside>
 
-        <li className="mt-auto">
-          <SignOutButton />
-        </li>
-      </ul>
-    </nav>
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 md:hidden" onClick={closeNav} />
+      )}
+
+      <nav
+        className={`border-r border-primary-900 w-64 absolute top-0 left-0 bg-primary-950 z-30 h-[76dvh] ${
+          isOpen ? show : hide
+        } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100`}
+      >
+        <ul className="flex flex-col gap-2 h-full text-lg">
+          {navLinks.map((link) => (
+            <li key={link.name} onClick={closeNav}>
+              <Link
+                className={`py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 ${
+                  pathname === link.href ? "bg-primary-900" : ""
+                }`}
+                href={link.href}
+              >
+                {link.icon}
+                <span>{link.name}</span>
+              </Link>
+            </li>
+          ))}
+
+          <li className="mt-auto">
+            <SignOutButton />
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 }
 

@@ -12,8 +12,9 @@ export default function MenuIcon({ className = "" }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`size-6 ${className}`}
+      className={`size-8 ${className}`}
       onClick={toggleOpen}
+      aria-label="Toggle navigation"
     >
       <path
         strokeLinecap="round"
