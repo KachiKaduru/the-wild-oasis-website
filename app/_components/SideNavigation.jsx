@@ -4,7 +4,8 @@ import { CalendarDaysIcon, HomeIcon, UserIcon } from "@heroicons/react/24/solid"
 import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import MenuIcon from "./MenuIcon";
+import { useReservation } from "../_contexts/ReservationContext";
+import { useEffect } from "react";
 
 const navLinks = [
   {
@@ -26,16 +27,42 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
-  const show = "-translate-x-full opacity-00";
-  // const show = "";
+  const { isOpen, toggleOpen, setIsOpen } = useReservation();
+
+  const hide = "-translate-x-full opacity-0 -z-40";
+  const show = "translate-x-0 md:opacity-100";
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleResize = (e) => {
+      if (e.matches && isOpen) return;
+
+      if (e.matches && !isOpen) setIsOpen(true);
+
+      if (!e.matches) setIsOpen(false);
+
+      // if (e.matches) {
+
+      // }
+    };
+
+    // Initial check
+    handleResize(mediaQuery);
+
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   return (
     <nav
-      className={`border-r border-primary-900 md:sticky md:top-0 w-64 absolute top-0 left-0 bg-primary-700 md:bg-transparent z-30 h-[76dvh] ${show}`}
+      className={`border-r border-primary-900 md:sticky md:top-0 w-64 absolute top-0 left-0 bg-primary-700 md:bg-transparent z-30 h-[76dvh] ${
+        isOpen ? "" : hide
+      }`}
     >
       <ul className="flex flex-col gap-2 h-full text-lg">
         {navLinks.map((link) => (
-          <li key={link.name}>
+          <li key={link.name} onClick={toggleOpen}>
             <Link
               className={`py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 ${
                 pathname === link.href ? "bg-primary-900" : ""

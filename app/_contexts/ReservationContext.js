@@ -8,10 +8,16 @@ const initialState = { from: undefined, to: undefined };
 
 function ReservationProvider({ children }) {
   const [range, setRange] = useState(initialState);
+  const [isOpen, setIsOpen] = useState(false);
+
   const resetRange = () => setRange(initialState);
 
+  const toggleOpen = () => setIsOpen((i) => !i);
+
   return (
-    <ReservationContext.Provider value={{ range, setRange, resetRange }}>
+    <ReservationContext.Provider
+      value={{ range, setRange, resetRange, isOpen, setIsOpen, toggleOpen }}
+    >
       {children}
     </ReservationContext.Provider>
   );
