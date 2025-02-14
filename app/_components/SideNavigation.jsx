@@ -1,10 +1,10 @@
 "use client";
 
-import { CalendarDaysIcon, HomeIcon, UserIcon } from "@heroicons/react/24/solid";
-import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CalendarDaysIcon, HomeIcon, UserIcon } from "@heroicons/react/24/solid";
 import { useReservation } from "../_contexts/ReservationContext";
+import SignOutButton from "./SignOutButton";
 import MenuIcon from "./MenuIcon";
 
 const navLinks = [

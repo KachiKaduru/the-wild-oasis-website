@@ -12,7 +12,7 @@ export default function MenuIcon({ className = "" }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`size-8 ${className}`}
+      className={`size-8 text-primary-200 ${className}`}
       onClick={toggleOpen}
       aria-label="Toggle navigation"
     >
