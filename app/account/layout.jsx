@@ -1,4 +1,3 @@
-import MenuIcon from "../_components/MenuIcon";
 import SideNavigation from "../_components/SideNavigation";
 
 export default function AccountLayout({ children }) {

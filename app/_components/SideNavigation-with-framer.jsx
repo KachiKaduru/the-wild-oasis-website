@@ -5,8 +5,8 @@ import SignOutButton from "./SignOutButton";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useReservation } from "../_contexts/ReservationContext";
-// import { useEffect } from "react";
 import MenuIcon from "./MenuIcon";
+import { motion } from "framer-motion";
 
 const navLinks = [
   {
@@ -26,6 +26,12 @@ const navLinks = [
   },
 ];
 
+const sidebarVariants = {
+  hidden: { x: "-100%" }, // Start off-screen
+  visible: { x: 0, transition: { duration: 0.1, ease: "easeInOut" } }, // Slide in
+  exit: { x: "-100%", transition: { duration: 0.1, ease: "easeInOut" } }, // Slide out
+};
+
 function SideNavigation() {
   const pathname = usePathname();
   const { isOpen, closeNav } = useReservation();
@@ -33,40 +39,26 @@ function SideNavigation() {
   const hide = "-translate-x-full opacity-0 -z-40";
   const show = "translate-x-0 opacity-100";
 
-  // useEffect(() => {
-  //   const mediaQuery = window.matchMedia("(min-width: 768px)");
-
-  //   const handleResize = (e) => {
-  //     if (e.matches && isOpen) return;
-
-  //     if (e.matches && !isOpen) setIsOpen(true);
-
-  //     if (!e.matches) setIsOpen(false);
-
-  //     // if (e.matches) {
-
-  //     // }
-  //   };
-
-  //   // Initial check
-  //   handleResize(mediaQuery);
-
-  //   mediaQuery.addEventListener("change", handleResize);
-  //   return () => mediaQuery.removeEventListener("change", handleResize);
-  // }, []);
-
   return (
     <aside>
       <MenuIcon className="md:hidden" />
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 md:hidden" onClick={closeNav} />
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-40 md:hidden"
+          onClick={closeNav}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        />
       )}
 
-      <nav
-        className={`border-r border-primary-900 w-64 absolute top-0 left-0 bg-primary-950 z-30 h-[76dvh] ${
-          isOpen ? show : hide
-        } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100`}
+      <motion.nav
+        className={`border-r border-primary-900 w-64 absolute top-0 left-0 bg-primary-950 -z-30 h-[76dvh]`}
+        variants={sidebarVariants}
+        initial="hidden"
+        animate={isOpen ? "visible" : "hidden"}
+        exit="exit"
       >
         <ul className="flex flex-col gap-2 h-full text-lg">
           {navLinks.map((link) => (
@@ -87,7 +79,7 @@ function SideNavigation() {
             <SignOutButton />
           </li>
         </ul>
-      </nav>
+      </motion.nav>
     </aside>
   );
 }
