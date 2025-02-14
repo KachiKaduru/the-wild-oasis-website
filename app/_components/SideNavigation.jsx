@@ -26,7 +26,7 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
-  const show = "-translate-x-full opacity-0";
+  const show = "-translate-x-full opacity-00";
   // const show = "";
 
   return (
