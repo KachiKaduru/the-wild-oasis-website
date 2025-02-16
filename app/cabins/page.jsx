@@ -10,7 +10,7 @@ export const metadata = {
   title: "Cabins",
 };
 
-export default function Page({ searchParams }) {
+export default function CabinPage({ searchParams }) {
   const filter = searchParams?.capacity ?? "all";
 
   return (
