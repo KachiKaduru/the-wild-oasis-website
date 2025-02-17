@@ -4,6 +4,10 @@ import { NextResponse } from "next/server";
 export async function middleware(request) {
   const session = await auth();
 
+  //If a user is not yet logged in and visits "/account", redirect them to login
+  if (!session && request.nextUrl.pathname === "/account")
+    return NextResponse.redirect(new URL("login", request.url));
+
   // If user is logged in and visits "/", redirect them to "/account"
   if (session && request.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL("/account", request.url));

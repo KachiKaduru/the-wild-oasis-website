@@ -5,7 +5,7 @@ import HeaderMenuIcon from "./HeaderMenuIcon";
 import { useHeader } from "../_contexts/HeaderContext";
 import HeaderCloseIcon from "./HeaderCloseIcon";
 
-export default function Navigation({ children }) {
+export default function Navigation() {
   const { isHeaderOpen, toggleHeader, closeHeader } = useHeader();
 
   return (
@@ -39,7 +39,11 @@ export default function Navigation({ children }) {
             </Link>
           </li>
 
-          {children}
+          <li onClick={closeHeader}>
+            <Link href="/account" className="hover:text-accent-400 transition-colors">
+              Sign in
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>

@@ -9,13 +9,9 @@ export const metadata = {
 
 export default async function AccountPage() {
   const session = await auth();
-  const firstName = session.user.name.split(" ").at(0);
 
-  const bookings = await getBookings(session.user.guestId);
-
-  if (!session) {
-    redirect("/");
-  }
+  const firstName = session?.user?.name.split(" ").at(0);
+  const bookings = await getBookings(session?.user?.guestId);
 
   return (
     <div className="overflow-y-scroll h-[76dvh]">
