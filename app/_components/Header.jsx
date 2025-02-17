@@ -11,7 +11,7 @@ async function Header() {
     <header className="border-b border-primary-900 px-6 py-3 sm:px-8 sm:py-5">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <MenuBar session={session} />
-        <Logo />
+        <Logo session={session} />
         {session ? <UserArea /> : <Navigation />}
       </div>
     </header>

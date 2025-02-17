@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDaysIcon, HomeIcon, HomeModernIcon, UserIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLeftStartOnRectangleIcon,
+  CalendarDaysIcon,
+  HomeIcon,
+  HomeModernIcon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
 import { useReservation } from "../_contexts/ReservationContext";
-import SignOutButton from "./SignOutButton";
+import SignOutModal from "./SignOutModal";
 
 const navLinks = [
   {
@@ -31,7 +37,7 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
-  const { isOpen, closeNav, toggleOpen } = useReservation();
+  const { isOpen, closeNav, toggleModal, showModal } = useReservation();
 
   const hide = "-translate-x-full opacity-0 -z-40";
   const show = "translate-x-0 opacity-100";
@@ -68,10 +74,18 @@ function SideNavigation() {
           ))}
 
           <li className="mt-auto">
-            <SignOutButton />
+            <button
+              className="py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 w-full"
+              onClick={toggleModal}
+            >
+              <ArrowLeftStartOnRectangleIcon className="h-5 w-5 text-primary-600" />
+              <span>Sign out</span>
+            </button>
           </li>
         </ul>
       </nav>
+
+      <SignOutModal />
     </aside>
   );
 }

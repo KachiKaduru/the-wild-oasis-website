@@ -5,7 +5,7 @@ import Link from "next/link";
 import logo from "@/public/logo.png";
 import { useEffect, useState } from "react";
 
-function Logo() {
+function Logo({ session }) {
   const [area, setArea] = useState(45);
 
   useEffect(() => {
@@ -31,7 +31,11 @@ function Logo() {
         quality={100}
         alt="The Wild Oasis logo"
       />
-      <span className="text-lg sm:text-xl font-semibold text-primary-100 max-[450px]:hidden">
+      <span
+        className={`text-lg sm:text-xl font-semibold text-primary-100 ${
+          session ? "max-[450px]:hidden" : ""
+        }`}
+      >
         The Wild Oasis
       </span>
     </Link>
