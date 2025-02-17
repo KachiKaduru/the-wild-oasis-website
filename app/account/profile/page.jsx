@@ -12,7 +12,7 @@ export default async function Page() {
   const guest = await getGuest(session.user.email);
 
   return (
-    <div className="overflow-y-scroll h-[76dvh]">
+    <div className="">
       <h2 className="font-semibold text-xl sm:text-2xl text-accent-400 mb-4">
         Update your guest profile
       </h2>

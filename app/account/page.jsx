@@ -1,6 +1,5 @@
 import { auth } from "../_lib/auth";
 import { getBookings } from "../_lib/data-service";
-import CabinPage from "../cabins/page";
 
 export const metadata = {
   title: "Guest Area",
@@ -22,8 +21,6 @@ export default async function AccountPage() {
           reservations
         </p>
       </div>
-
-      {/* <CabinPage /> */}
     </div>
   );
 }

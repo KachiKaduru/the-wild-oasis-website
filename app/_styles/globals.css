@@ -6,6 +6,11 @@
   transition: all 0.3s;
 }
 
+.flow {
+  overflow-y: scroll;
+  height: calc(100dvh - 60px);
+}
+
 @layer components {
   .spinner {
     margin: 3.2rem auto 1.6rem;

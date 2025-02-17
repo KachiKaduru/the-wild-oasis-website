@@ -6,14 +6,14 @@ import logo from "@/public/logo.png";
 import { useEffect, useState } from "react";
 
 function Logo() {
-  const [area, setArea] = useState(50);
+  const [area, setArea] = useState(45);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 768px)");
 
     const handleResize = (e) => {
       if (e.matches) setArea(60);
-      if (!e.matches) setArea(50);
+      if (!e.matches) setArea(45);
     };
 
     handleResize(mediaQuery);
@@ -31,7 +31,9 @@ function Logo() {
         quality={100}
         alt="The Wild Oasis logo"
       />
-      <span className="text-lg sm:text-xl font-semibold text-primary-100">The Wild Oasis</span>
+      <span className="text-lg sm:text-xl font-semibold text-primary-100 max-[450px]:hidden">
+        The Wild Oasis
+      </span>
     </Link>
   );
 }
