@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { auth } from "../_lib/auth";
 import { getBookings } from "../_lib/data-service";
 import CabinPage from "../cabins/page";

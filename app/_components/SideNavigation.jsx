@@ -27,21 +27,24 @@ const navLinks = [
 
 function SideNavigation() {
   const pathname = usePathname();
-  const { isOpen, closeNav } = useReservation();
+  const { isOpen, closeNav, toggleOpen } = useReservation();
 
   const hide = "-translate-x-full opacity-0 -z-40";
   const show = "translate-x-0 opacity-100";
 
   return (
     <aside>
-      <MenuIcon className="md:hidden" />
+      {/* <MenuIcon className="md:hidden" onClick={toggleOpen} /> */}
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 md:hidden" onClick={closeNav} />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 md:hidden backdrop-blur-sm"
+          onClick={closeNav}
+        />
       )}
 
       <nav
-        className={`border-r border-primary-900 w-52 sm:w-64 absolute top-0 left-0 bg-primary-950 z-30 h-[76dvh] ${
+        className={`border-r border-primary-900 w-52 sm:w-64 absolute -bottom-6 -left-6 bg-nav z-30 h-[100dvh] pt-40 pb-8 ${
           isOpen ? show : hide
         } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100`}
       >

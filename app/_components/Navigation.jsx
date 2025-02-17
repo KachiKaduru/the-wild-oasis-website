@@ -13,11 +13,14 @@ export default function Navigation() {
       <HeaderMenuIcon className="cursor-pointer md:hidden" onClick={toggleHeader} />
 
       {isHeaderOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 md:hidden" onClick={closeHeader} />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 md:hidden backdrop-blur-sm"
+          onClick={closeHeader}
+        />
       )}
 
       <nav
-        className={`z-20 text-xl fixed top-0 right-0 bg-primary-700 h-screen w-48 sm:w-60 ${
+        className={`z-20 text-xl fixed top-0 right-0 bg-primary-700 bg-opacity-80 h-screen w-48 sm:w-60 ${
           isHeaderOpen ? "translate-x-0" : "translate-x-full"
         } md:block md:relative md:h-full md:bg-transparent md:w-full md:translate-x-0`}
       >

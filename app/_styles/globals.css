@@ -42,3 +42,8 @@
   --rdp-background-color: theme("colors.accent.600") !important;
   margin: 0 !important;
 }
+
+.bg-nav {
+  background-color: #141c24d0;
+  filter: blur(1);
+}

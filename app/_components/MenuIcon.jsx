@@ -1,10 +1,6 @@
 "use client";
 
-import { useReservation } from "../_contexts/ReservationContext";
-
-export default function MenuIcon({ className = "" }) {
-  const { toggleOpen } = useReservation();
-
+export default function MenuIcon({ className = "", onClick }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +9,7 @@ export default function MenuIcon({ className = "" }) {
       strokeWidth={1.5}
       stroke="currentColor"
       className={`size-8 text-primary-200 ${className}`}
-      onClick={toggleOpen}
+      onClick={onClick}
       aria-label="Toggle navigation"
     >
       <path
