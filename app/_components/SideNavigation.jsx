@@ -44,9 +44,9 @@ function SideNavigation() {
       )}
 
       <nav
-        className={`border-r border-primary-900 w-52 sm:w-64 absolute -bottom-6 -left-6 bg-nav z-30 h-[100dvh] pt-40 pb-8 ${
+        className={`border-r border-primary-900 w-52 sm:w-64 fixed top-0 left-0 bg-[#141c24d0] z-30 h-[100dvh] pt-40 pb-8 ${
           isOpen ? show : hide
-        } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100`}
+        } md:sticky md:top-0 md:bg-transparent md:translate-x-0 md:opacity-100 md:p-0 `}
       >
         <ul className="flex flex-col gap-2 h-full text-lg">
           {navLinks.map((link) => (
