@@ -1,4 +1,4 @@
-import bgImg from "@/public/bg.png";
+import bgImg from "@/public/bg-img-02.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +13,8 @@ export default async function Page() {
         quality={80}
         className="object-cover object-top"
       />
+
+      <div className="bg-black fixed top-0 left-0 w-full h-screen bg-opacity-30"></div>
 
       <div className="relative z-10 text-center">
         <h1 className="text-6xl sm:text-7xl mb:text-8xl text-primary-50 mb-10 tracking-tight font-normal">
